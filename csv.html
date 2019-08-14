@@ -9,7 +9,7 @@
  <body>
   <div class="container">
    <div class="table-responsive">
-    <h1 align="center">CSV File to HTML Table Using AJAX jQuery</h1>
+    <h1 align="center">COMPLETE WEATHER CSV DATA</h1>
     <br />
     <div align="center">
      <button type="button" name="load_data" id="load_data" class="btn btn-info">Load Data</button>
@@ -24,9 +24,9 @@
 
 <script>
 $(document).ready(function(){
- $('#load_data').click(function(){
+ $('final_report.csv').click(function(){
   $.ajax({
-   url:"final_report.csv",
+   url:"../web_project/final_report.csv",
    dataType:"text",
    success:function(data)
    {
@@ -50,7 +50,7 @@ $(document).ready(function(){
      table_data += '</tr>';
     }
     table_data += '</table>';
-    $('#final_report').html(table_data);
+    $('final_report.csv').html(table_data);
    }
   });
  });
