@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>CSV File to HTML Table Using AJAX jQuery</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ </head>
+ <body>
+  <div class="container">
+   <div class="table-responsive">
+    <h1 align="center">COMPLETE WEATHER CSV DATA</h1>
+    <br />
+    <div align="center">
+     <button type="button" name="load_data" id="load_data" class="btn btn-info">Load Data</button>
+    </div>
+    <br />
+    <div id="final_report.csv">
+    </div>
+   </div>
+  </div>
+ </body>
+
+ <script>
+ 
+    d3.text("final_report.csv", function(datasetText) {
+        var parsedCSV = d3.csv.parseRows(datasetText);
+        var sampleHTML = d3.select("#viz")
+        .append("table")
+        .style("border-collapse", "collapse")
+        .style("border", "2px black solid")
+    
+        .selectAll("tr")
+        .data(parsedCSV)
+        .enter().append("tr")
+    
+        .selectAll("td")
+        .data(function(d){return d;})
+        .enter().append("td")
+        .style("border", "1px black solid")
+        .style("padding", "5px")
+        .on("mouseover", function(){d3.select(this).style("background-color", "aliceblue")})
+        .on("mouseout", function(){d3.select(this).style("background-color", "white")})
+        .text(function(d){return d;})
+        .style("font-size", "12px");
+    });
+</script>
+
+</html>
